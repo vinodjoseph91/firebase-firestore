@@ -1,7 +1,7 @@
 <html>
 
 <head>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="style.css">
     <!-- Below line loads all the components of firebase service -->
     <!-- <script src="https://www.gstatic.com/firebasejs/5.7.0/firebase.js"></script> -->
     <!-- since we will only be using firebase database in our app , we will download only the db and 
@@ -16,7 +16,13 @@
 
     <div class="content">
 
-        <form id="add-cafe-form"></form>
+        <form id="add-cafe-form">
+
+            <input type="text" name="name" placeholder="Cafe name">
+            <input type="text" name="city" placeholder="Cafe city">
+            <button>Add Cafe</button>
+
+        </form>
 
         <ul id="cafe-list"></ul>
 
@@ -34,6 +40,7 @@
             messagingSenderId: "192725027841"
         };
         firebase.initializeApp(config);
+        // Setting the firebase database to a constant which we will be using in the app
         const db = firebase.firestore();
         db.settings({ timestampsInSnapshots: true });
     </script>
