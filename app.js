@@ -31,12 +31,12 @@ function renderCafe(doc) {
 }
 
 //method to fetch data from firebase db ='cafes' using .get() => its an async call 
-// db.collection('cafes').get().then((snapshot) => {
-//     snapshot.docs.forEach(doc => {
-//         // iterating each doc,actual document data can be read using doc.data() method
-//         renderCafe(doc);
-//     })
-// })
+db.collection('cafes').get().then((snapshot) => {
+    snapshot.docs.forEach(doc => {
+        // iterating each doc,actual document data can be read using doc.data() method
+        renderCafe(doc);
+    })
+})
 
 // queries with where clause based on different conditions
 //where('city','<','t'), where('city','>','t') etc
@@ -56,12 +56,12 @@ function renderCafe(doc) {
 // })
 
 // queries with orderby clause and where clause ( for this query we need to enable indexing for the db)
-db.collection('cafes').where('city','==','bangalore').orderBy('name').get().then((snapshot) => {
-    snapshot.docs.forEach(doc => {
-        // iterating each doc,actual document data can be read using doc.data() method
-        renderCafe(doc);
-    })
-})
+// db.collection('cafes').where('city','==','bangalore').orderBy('name').get().then((snapshot) => {
+//     snapshot.docs.forEach(doc => {
+//         // iterating each doc,actual document data can be read using doc.data() method
+//         renderCafe(doc);
+//     })
+// })
 //saving data to firebase db
 form.addEventListener('submit', (e) => {
     e.preventDefault();
