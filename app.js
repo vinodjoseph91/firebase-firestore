@@ -94,6 +94,12 @@ db.collection('cafes').orderBy('city').onSnapshot(snapshot => {
 
 // To update a document
 // Todo : Add a ui logic to supporting updating a value
-db.collection('cafes').doc('isCYI8OBTSiazlRcWq36').update({
-    name: "updated name for testing"
-})
+// db.collection('cafes').doc('isCYI8OBTSiazlRcWq36').update({
+//     name: "updated name for testing"
+// })
+
+// Use .set() to override a complete document - if we don't pass some fields those fields will be empty
+
+// db.collection('cafes').doc('isCYI8OBTSiazlRcWq36').set({
+//     name: "updated name" // city will blank in this case
+// })
