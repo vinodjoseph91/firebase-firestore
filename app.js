@@ -31,12 +31,22 @@ function renderCafe(doc) {
 }
 
 //method to fetch data from firebase db ='cafes' using .get() => its an async call 
-db.collection('cafes').get().then((snapshot) => {
+// db.collection('cafes').get().then((snapshot) => {
+//     snapshot.docs.forEach(doc => {
+//         // iterating each doc,actual document data can be read using doc.data() method
+//         renderCafe(doc);
+//     })
+// })
+
+// quries with where clause based on different conditions
+//where('city','<','t'), where('city','>','t') etc
+db.collection('cafes').where('city','==','bangalore').get().then((snapshot) => {
     snapshot.docs.forEach(doc => {
         // iterating each doc,actual document data can be read using doc.data() method
         renderCafe(doc);
     })
 })
+
 
 //saving data to firebase db
 form.addEventListener('submit', (e) => {
