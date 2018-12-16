@@ -1,0 +1,44 @@
+<html>
+
+<head>
+    <link rel="stylesheet" href="styles.css">
+    <!-- Below line loads all the components of firebase service -->
+    <!-- <script src="https://www.gstatic.com/firebasejs/5.7.0/firebase.js"></script> -->
+    <!-- since we will only be using firebase database in our app , we will download only the db and 
+    fire base core dependencies for efficiency-->
+    <script src="https://www.gstatic.com/firebasejs/5.7.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.7.0/firebase-firestore.js"></script>
+</head>
+
+<body>
+
+    <h1>Cloud Cafe</h1>
+
+    <div class="content">
+
+        <form id="add-cafe-form"></form>
+
+        <ul id="cafe-list"></ul>
+
+    </div>
+
+
+    <script>
+        // Initialize Firebase
+        var config = {
+            apiKey: "AIzaSyAGmmd5PeWQcD08hXoB6O20UX61MjKeH7Q",
+            authDomain: "firestore-learner.firebaseapp.com",
+            databaseURL: "https://firestore-learner.firebaseio.com",
+            projectId: "firestore-learner",
+            storageBucket: "firestore-learner.appspot.com",
+            messagingSenderId: "192725027841"
+        };
+        firebase.initializeApp(config);
+        const db = firebase.firestore();
+        db.settings({ timestampsInSnapshots: true });
+    </script>
+
+    <script src="app.js"></script>
+</body>
+
+</html>
