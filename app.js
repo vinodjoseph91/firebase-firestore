@@ -12,7 +12,7 @@ function renderCafe(doc) {
     li.setAttribute('data-id', doc.id);
     name.textContent = doc.data().name;
     city.textContent = doc.data().city;
-    cross.textContent ='x';
+    cross.textContent = 'x';
 
     li.appendChild(name);
     li.appendChild(city);
@@ -20,7 +20,7 @@ function renderCafe(doc) {
     cafeList.appendChild(li);
 
     // Adding a click event to the cross added above
-    cross.addEventListener('click',(e)=>{
+    cross.addEventListener('click', (e) => {
         e.stopPropagation();
         // getting the id of the selected item
         let id = e.target.parentElement.getAttribute('data-id');
@@ -77,16 +77,23 @@ form.addEventListener('submit', (e) => {
 
 // Real time data management using onSnapshot()
 
-db.collection('cafes').orderBy('city').onSnapshot(snapshot=>{
+db.collection('cafes').orderBy('city').onSnapshot(snapshot => {
     // snapshot.docChanges() gets the docs with events described like added, removed.
     let changes = snapshot.docChanges();
-    changes.forEach((change)=>{
-        if(change.type == 'added'){
+    changes.forEach((change) => {
+        if (change.type == 'added') {
             renderCafe(change.doc);
         }
-        else if(change.type == 'removed'){
-            let li = cafeList.querySelector('[data-id='+change.doc.id+']');
+        else if (change.type == 'removed') {
+            let li = cafeList.querySelector('[data-id=' + change.doc.id + ']');
             cafeList.removeChild(li);
         }
     })
+})
+
+
+// To update a document
+// Todo : Add a ui logic to supporting updating a value
+db.collection('cafes').doc('isCYI8OBTSiazlRcWq36').update({
+    name: "updated name for testing"
 })
