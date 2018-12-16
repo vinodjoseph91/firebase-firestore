@@ -38,16 +38,30 @@ function renderCafe(doc) {
 //     })
 // })
 
-// quries with where clause based on different conditions
+// queries with where clause based on different conditions
 //where('city','<','t'), where('city','>','t') etc
-db.collection('cafes').where('city','==','bangalore').get().then((snapshot) => {
+// db.collection('cafes').where('city','==','bangalore').get().then((snapshot) => {
+//     snapshot.docs.forEach(doc => {
+//         // iterating each doc,actual document data can be read using doc.data() method
+//         renderCafe(doc);
+//     })
+// })
+
+// queries with orderby clause
+// db.collection('cafes').orderBy('city').get().then((snapshot) => {
+//     snapshot.docs.forEach(doc => {
+//         // iterating each doc,actual document data can be read using doc.data() method
+//         renderCafe(doc);
+//     })
+// })
+
+// queries with orderby clause and where clause ( for this query we need to enable indexing for the db)
+db.collection('cafes').where('city','==','bangalore').orderBy('name').get().then((snapshot) => {
     snapshot.docs.forEach(doc => {
         // iterating each doc,actual document data can be read using doc.data() method
         renderCafe(doc);
     })
 })
-
-
 //saving data to firebase db
 form.addEventListener('submit', (e) => {
     e.preventDefault();
