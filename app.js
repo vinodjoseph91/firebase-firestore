@@ -31,12 +31,12 @@ function renderCafe(doc) {
 }
 
 //method to fetch data from firebase db ='cafes' using .get() => its an async call 
-db.collection('cafes').get().then((snapshot) => {
-    snapshot.docs.forEach(doc => {
-        // iterating each doc,actual document data can be read using doc.data() method
-        renderCafe(doc);
-    })
-})
+// db.collection('cafes').get().then((snapshot) => {
+//     snapshot.docs.forEach(doc => {
+//         // iterating each doc,actual document data can be read using doc.data() method
+//         renderCafe(doc);
+//     })
+// })
 
 // queries with where clause based on different conditions
 //where('city','<','t'), where('city','>','t') etc
@@ -72,4 +72,21 @@ form.addEventListener('submit', (e) => {
 
     form.name.value = '';
     form.city.value = '';
+})
+
+
+// Real time data management using onSnapshot()
+
+db.collection('cafes').orderBy('city').onSnapshot(snapshot=>{
+    // snapshot.docChanges() gets the docs with events described like added, removed.
+    let changes = snapshot.docChanges();
+    changes.forEach((change)=>{
+        if(change.type == 'added'){
+            renderCafe(change.doc);
+        }
+        else if(change.type == 'removed'){
+            let li = cafeList.querySelector('[data-id='+change.doc.id+']');
+            cafeList.removeChild(li);
+        }
+    })
 })
